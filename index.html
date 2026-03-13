@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Engineer Program - CyberTeam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #1e2a3a;
+            line-height: 1.5;
+            background: #ffffff;
+        }
+
+        /* Navigation */
+        .navbar {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e2a3a;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #4b5565;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #1e2a3a;
+        }
+
+        .nav-links a.active {
+            color: #1e2a3a;
+            border-bottom: 2px solid #1e2a3a;
+            padding-bottom: 0.25rem;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Hero section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1e2a3a;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content p {
+            font-size: 1.125rem;
+            color: #4b5565;
+            margin-bottom: 2rem;
+            max-width: 540px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #1e2a3a;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #2d3a4e;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1e2a3a;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #d1d5db;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+        .hero-image {
+            background: #f3f4f6;
+            border-radius: 12px;
+            padding: 2rem;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Tabs */
+        .tabs {
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 3rem;
+        }
+
+        .tab-container {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .tab {
+            padding: 1rem 0;
+            color: #6b7280;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .tab:hover {
+            color: #1e2a3a;
+            border-bottom-color: #d1d5db;
+        }
+
+        .tab.active {
+            color: #1e2a3a;
+            border-bottom-color: #1e2a3a;
+        }
+
+        /* Content sections */
+        .content-section {
+            display: block;
+        }
+
+        .content-section.hidden {
+            display: none;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .main-content h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1e2a3a;
+            margin-bottom: 1.5rem;
+        }
+
+        .main-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e2a3a;
+            margin: 2rem 0 1rem;
+        }
+
+        .main-content p {
+            color: #4b5565;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Expandable sections */
+        .expandable-section {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .expandable-header {
+            background: #f9fafb;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1e2a3a;
+        }
+
+        .expandable-header:hover {
+            background: #f3f4f6;
+        }
+
+        .expandable-content {
+            padding: 1.5rem;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .expandable-content.hidden {
+            display: none;
+        }
+
+        .toggle-icon {
+            font-size: 1.25rem;
+            transition: transform 0.2s;
+        }
+
+        .rotate {
+            transform: rotate(90deg);
+        }
+
+        /* Bookmarks list */
+        .bookmarks-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .bookmarks-list li {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bookmarks-list li:last-child {
+            border-bottom: none;
+        }
+
+        .bookmarks-list a {
+            color: #1e2a3a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .bookmarks-list a:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        .badge {
+            background: #e5e7eb;
+            color: #4b5565;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Offer card */
+        .offer-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 100px;
+        }
+
+        .price-block {
+            margin-bottom: 2rem;
+        }
+
+        .old-price {
+            font-size: 1.125rem;
+            color: #6b7280;
+            text-decoration: line-through;
+            margin-bottom: 0.5rem;
+        }
+
+        .current-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e2a3a;
+            margin-bottom: 0.5rem;
+        }
+
+        .current-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #6b7280;
+        }
+
+        .discount-badge {
+            background: #e6f7e6;
+            color: #0e6245;
+            padding: 0.25rem 1rem;
+            border-radius: 100px;
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid #a7e0b5;
+        }
+
+        /* Countdown */
+        .countdown-box {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .countdown-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            color: #6b7280;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .countdown-timer {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .countdown-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e2a3a;
+            line-height: 1.2;
+        }
+
+        .countdown-text {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+        }
+
+        .expired-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Download section */
+        .download-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+
+        .download-section h4 {
+            margin-bottom: 1rem;
+            color: #1e2a3a;
+        }
+
+        .download-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .download-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #1e2a3a;
+            transition: all 0.2s;
+        }
+
+        .download-link:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+
+        .download-icon {
+            font-size: 1.25rem;
+        }
+
+        /* Employee sign in */
+        .employee-signin {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .employee-badge {
+            display: inline-block;
+            background: #f3f4f6;
+            color: #1e2a3a;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #1e2a3a;
+        }
+
+        .signin-btn {
+            width: 100%;
+            background: #1e2a3a;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .signin-btn:hover {
+            background: #2d3a4e;
+        }
+
+        .success-message {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .success-message h4 {
+            color: #0e6245;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .footer-col h5 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #1e2a3a;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .footer-col a:hover {
+            color: #1e2a3a;
+        }
+
+        /* Trials section */
+        .trials-section {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .trials-section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1e2a3a;
+            margin-bottom: 1rem;
+        }
+
+        .trials-list {
+            list-style: none;
+        }
+
+        .trials-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .trials-list li:last-child {
+            border-bottom: none;
+        }
+
+        .trials-list a {
+            color: #1e2a3a;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .trials-list a:hover {
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">CyberTeam</a>
+            <div class="nav-links">
+                <a class="tab-link active" onclick="switchTab('overview')">Overview</a>
+                <a class="tab-link" onclick="switchTab('exam')">Exam and training</a>
+                <a class="tab-link" onclick="switchTab('community')">Community</a>
+                <a class="tab-link" onclick="switchTab('resources')">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section (always visible) -->
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Network Engineer Program</h1>
+                <p>Validate your knowledge and skills in network fundamentals, IP connectivity, IP services, security fundamentals, and more. Take your IT career in any direction by earning a professional certification from CyberTeam.</p>
+                <div class="cta-buttons">
+                    <button class="btn-primary" onclick="document.getElementById('signinSection').scrollIntoView({behavior: 'smooth'})">Start learning →</button>
+                    <button class="btn-secondary" onclick="downloadGuide()">Download program guide ↓</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div style="text-align: center; color: #6b7280;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌐</div>
+                    <div style="font-weight: 500;">Network Engineer</div>
+                    <div style="font-size: 0.875rem; margin-top: 0.5rem;">by CyberTeam</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview Section -->
+        <div id="overview-section" class="content-section">
+            <div class="content-grid">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <h2>Program overview</h2>
+                    
+                    <!-- Expandable: Program overview -->
+                    <div class="expandable-section">
+                        <div class="expandable-header" onclick="toggleExpandable('overview-details')">
+                            <span>Program overview</span>
+                            <span class="toggle-icon" id="overview-details-icon">▶</span>
+                        </div>
+                        <div id="overview-details" class="expandable-content">
+                            <p>The CyberTeam Network Engineer program validates your ability to install, configure, operate, and troubleshoot medium-size routed and switched networks. This program covers a broad range of fundamentals, including:</p>
+                            <ul style="margin-left: 1.5rem; margin-top: 1rem; color: #4b5565;">
+                                <li>Network fundamentals and access</li>
+                                <li>Cisco CCNA</li>
+                                <li>CCNA Security</li>
+                                <li>Web Security</li>
+                                <li>Web Security Essentials</li>
+                                <li>Install & Configure</li>
+                                <li>AR Security</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Expandable: All Bookmarks -->
+                    <div class="expandable-section">
+                        <div class="expandable-header" onclick="toggleExpandable('bookmarks')">
+                            <span>All Bookmarks</span>
+                            <span class="toggle-icon" id="bookmarks-icon">▶</span>
+                        </div>
+                        <div id="bookmarks" class="expandable-content">
+                            <ul class="bookmarks-list">
+                                <li>
+                                    <a href="#" onclick="downloadFile('network-fundamentals.pdf')">Network fundamentals guide</a>
+                                    <span class="badge">PDF</span>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="downloadFile('ip-connectivity.docx')">IP connectivity workbook</a>
+                                    <span class="badge">DOC</span>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="downloadFile('security-basics.mp4')">Security basics</a>
+                                    <span class="badge">VIDEO</span>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="downloadFile('ccna-notes.pdf')">CCNA revision notes</a>
+                                    <span class="badge">PDF</span>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="downloadFile('lab-setup-guide.pdf')">Lab setup guide</a>
+                                    <span class="badge">PDF</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Expandable: Trials and demos -->
+                    <div class="expandable-section">
+                        <div class="expandable-header" onclick="toggleExpandable('trials')">
+                            <span>Trials and demos</span>
+                            <span class="toggle-icon" id="trials-icon">▶</span>
+                        </div>
+                        <div id="trials" class="expandable-content">
+                            <ul class="bookmarks-list">
+                                <li>
+                                    <a href="#" onclick="startTrial('practice-exam')">Free practice exam</a>
+                                    <span class="badge">Try now</span>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="startTrial('simulator')">Network simulator</a>
+                                    <span class="badge">Demo</span>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="startTrial('interview-kit')">Interview prep toolkit</a>
+                                    <span class="badge">Sample</span>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="startTrial('lab-access')">Live lab access</a>
+                                    <span class="badge">7-day trial</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Employee sign in section -->
+                    <div id="signinSection">
+                        <div class="employee-signin" id="signinCard">
+                            <div class="employee-badge">🔐 EXCLUSIVE FOR CYBERTEAM EMPLOYEES</div>
+                            <h4>Employee Sign In</h4>
+                            <p style="color: #6b7280; font-size: 0.875rem; margin-bottom: 1rem;">Use your company credentials to enroll</p>
+                            
+                            <div class="input-group">
+                                <input type="email" id="empEmail" placeholder="you@cyberteam.com">
+                            </div>
+                            <div class="input-group">
+                                <input type="password" id="empPassword" placeholder="Password">
+                            </div>
+                            
+                            <button class="signin-btn" onclick="handleSignIn()">Sign In with Company Account</button>
+                        </div>
+
+                        <div class="success-message" id="successMessage">
+                            <h4>✓ Sign in successful!</h4>
+                            <p>Welcome, <span id="empName">Employee</span></p>
+                            <p style="font-size: 0.875rem; margin: 1rem 0;">Your enrollment request has been sent to CyberTeam HR.</p>
+                            <div style="background: #0e6245; color: white; padding: 0.25rem 1rem; border-radius: 100px; display: inline-block; font-size: 0.75rem; font-weight: 600;">VERIFIED EMPLOYEE</div>
+                            <p style="color: #6b7280; font-size: 0.875rem; margin-top: 1rem;">You will receive course access within 24 hours after verification.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Offer Card -->
+                    <div class="offer-card">
+                        <div class="price-block">
+                            <div class="old-price">$5,000</div>
+                            <div class="current-price">$1,950 <span>/program</span></div>
+                            <div class="discount-badge">Save $3,050 (61% OFF)</div>
+                        </div>
+
+                        <!-- Countdown -->
+                        <div class="countdown-box">
+                            <div class="countdown-label">⏳ OFFER ENDS IN</div>
+                            <div id="countdownTimer">
+                                <!-- Timer will be inserted here -->
+                            </div>
+                            <div style="font-size: 0.75rem; color: #6b7280; margin-top: 1rem; text-align: center;">
+                                13 March 2026 • 9:00 AM IST
+                            </div>
+                        </div>
+
+                        <!-- Download section -->
+                        <div class="download-section">
+                            <h4>Quick downloads</h4>
+                            <div class="download-links">
+                                <a href="#" class="download-link" onclick="downloadFile('syllabus.pdf')">
+                                    <span class="download-icon">📄</span>
+                                    <span>Program syllabus (PDF)</span>
+                                </a>
+                                <a href="#" class="download-link" onclick="downloadFile('brochure.pdf')">
+                                    <span class="download-icon">📑</span>
+                                    <span>Course brochure</span>
+                                </a>
+                                <a href="#" class="download-link" onclick="downloadFile('sample-lesson.mp4')">
+                                    <span class="download-icon">🎥</span>
+                                    <span>Sample lesson</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exam and training section (hidden initially) -->
+        <div id="exam-section" class="content-section hidden">
+            <div class="content-grid">
+                <div class="main-content">
+                    <h2>Exam and training</h2>
+                    <p>Coming soon: Detailed exam information and training schedule.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community section (hidden initially) -->
+        <div id="community-section" class="content-section hidden">
+            <div class="content-grid">
+                <div class="main-content">
+                    <h2>Community</h2>
+                    <p>Join our community of network engineers. Forums, discussion groups, and mentorship programs coming soon.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources section (hidden initially) -->
+        <div id="resources-section" class="content-section hidden">
+            <div class="content-grid">
+                <div class="main-content">
+                    <h2>Resources</h2>
+                    <p>Access study guides, video library, and download center.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Overview</h5>
+                    <a onclick="switchTab('overview')">Program details</a>
+                    <a onclick="switchTab('overview')">Certification path</a>
+                    <a onclick="switchTab('overview')">FAQs</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Exam and training</h5>
+                    <a onclick="switchTab('exam')">Training courses</a>
+                    <a onclick="switchTab('exam')">Exam topics</a>
+                    <a onclick="switchTab('exam')">Practice tests</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Community</h5>
+                    <a onclick="switchTab('community')">Forums</a>
+                    <a onclick="switchTab('community')">Success stories</a>
+                    <a onclick="switchTab('community')">Mentorship</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <a onclick="switchTab('resources')">Study guides</a>
+                    <a onclick="switchTab('resources')">Video library</a>
+                    <a onclick="switchTab('resources')">Download center</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all sections
+            document.getElementById('overview-section').classList.add('hidden');
+            document.getElementById('exam-section').classList.add('hidden');
+            document.getElementById('community-section').classList.add('hidden');
+            document.getElementById('resources-section').classList.add('hidden');
+            
+            // Show selected section
+            document.getElementById(tabName + '-section').classList.remove('hidden');
+            
+            // Update active tab
+            document.querySelectorAll('.tab-link').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Expandable sections
+        function toggleExpandable(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(90deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Download functions
+        function downloadGuide() {
+            // Create a dummy PDF download
+            const content = "Network Engineer Program Guide\n\nComprehensive guide covering all topics.";
+            const blob = new Blob([content], { type: 'application/pdf' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cyberteam-network-guide.pdf';
+            a.click();
+            window.URL.revokeObjectURL(url);
+            
+            alert('Downloading program guide...');
+        }
+
+        function downloadFile(filename) {
+            let content = '';
+            let type = 'text/plain';
+            
+            if (filename.endsWith('.pdf')) {
+                content = "Sample PDF content for " + filename;
+                type = 'application/pdf';
+            } else if (filename.endsWith('.docx')) {
+                content = "Sample DOCX content for " + filename;
+                type = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+            } else if (filename.endsWith('.mp4')) {
+                content = "Sample video content";
+                type = 'video/mp4';
+            }
+            
+            const blob = new Blob([content], { type: type });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            window.URL.revokeObjectURL(url);
+            
+            alert('Downloading ' + filename);
+        }
+
+        function startTrial(trialName) {
+            alert(`Starting trial: ${trialName}\nYou will receive access instructions shortly.`);
+        }
+
+        // Countdown Timer
+        function initTimer() {
+            const timerContainer = document.getElementById('countdownTimer');
+            
+            // Target: March 13, 2026, 9:00 AM IST
+            const targetDate = new Date(2026, 2, 13, 9, 0, 0).getTime();
+            
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                // If expired
+                if (distance < 0) {
+                    timerContainer.innerHTML = `
+                        <div class="expired-message">
+                            Offer expired
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Calculate
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Build timer
+                timerContainer.innerHTML = `
+                    <div class="countdown-timer">
+                        <div class="countdown-item">
+                            <div class="countdown-number">${days.toString().padStart(2, '0')}</div>
+                            <div class="countdown-text">Days</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number">${hours.toString().padStart(2, '0')}</div>
+                            <div class="countdown-text">Hours</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number">${minutes.toString().padStart(2, '0')}</div>
+                            <div class="countdown-text">Mins</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number">${seconds.toString().padStart(2, '0')}</div>
+                            <div class="countdown-text">Secs</div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Initial update
+            updateTimer();
+            
+            // Update every second
+            setInterval(updateTimer, 1000);
+        }
+
+        // Handle Sign In
+        function handleSignIn() {
+            const email = document.getElementById('empEmail').value.trim();
+            const password = document.getElementById('empPassword').value;
+            
+            if (!email || !password) {
+                alert('Please enter both email and password');
+                return;
+            }
+            
+            if (!email.endsWith('@cyberteam.com')) {
+                alert('Only @cyberteam.com email addresses are allowed');
+                return;
+            }
+            
+            // Extract name
+            const namePart = email.split('@')[0].split('.')[0];
+            const displayName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
+            
+            // Hide signin, show success
+            document.getElementById('signinCard').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('empName').textContent = displayName;
+            
+            // Console log for HR
+            console.log('=== EMPLOYEE ENROLLMENT ===');
+            console.log('Employee:', displayName, `(${email})`);
+            console.log('Program: Network Engineer');
+            console.log('Time:', new Date().toLocaleString());
+            console.log('Status: Pending HR approval');
+        }
+
+        // Start timer on load
+        window.addEventListener('load', initTimer);
+
+        // Initialize expandable sections (all closed by default)
+        window.addEventListener('load', function() {
+            // Set initial icon states
+            document.getElementById('overview-details').classList.add('hidden');
+            document.getElementById('bookmarks').classList.add('hidden');
+            document.getElementById('trials').classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
